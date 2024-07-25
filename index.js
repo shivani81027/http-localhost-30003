@@ -1,143 +1,70 @@
 const express = require('express')
 const app = express();
-var methodOverride = require('method-override')
 let path=require("path");
-const { v4: uuidv4 } = require('uuid');
-let port= 30003;
+let port= 8080;
 app.set("view engine","ejs");
-app.set("views", path.join(__dirname, "/views"));
-app.use(express.urlencoded({extended:true})) ;
-app.use(methodOverride('_method'))
-app.use(express.static(path.join(__dirname, 'public')));
-
-let student=[{names:"ramu_kumar",pass:"847204",id:uuidv4()},{names:"mohan_kumar",pass:"47854",id:uuidv4()},{names:"shohan_kumar",pass:"963204",id:uuidv4()}];
-
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.urlencoded({extended: true}));
 
 app.listen(port,()=>{
   console.log("hii");
 }) ;
+app.get('/', (req, res) => {
+  res.render('index.ejs');
+});
 
-
-app.get("/exam", (req, res) => {
- 
-  res.render("exam.ejs" )
- 
-}); 
-
-
-app.get("/form", (req, res) => {
- 
-  res.render("form.ejs" )
- 
-});  
-
-
-
-app.get("/", (req, res) => {
- 
-  res.render("index.ejs" , {student})
- 
+app.get('/login', (req, res) => {
+  res.render('login.ejs');
 });
 
 
 
 
 
-app.post("/login", (req, res) => {
-  let {user,pass} =req.body;
 
- let id=uuidv4()
-student.push({user,pass,id});
-// console.log(student)
+// const {faker}=require('@faker-js/faker');
 
 
-  res.redirect("/")
- 
+
+
+
+const mysql = require('mysql2');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'query',
+  password:'ssz@one',
+
 });
 
+app.post('/submit', (req, res) => {
+  let {username, email } = req.body;
+let ue ={username, email};
+console.log(ue.username);
+let h= [ue.username,ue.email];
 
-app.get("/login", (req, res) => {
- 
-  res.render("add_name.ejs")
- 
-});
+  let q="INSERT INTO user (username , email ) values (?)";
+  let bs=[["mohan","fsdfsdf@543216"],["sohan","weyerg@54132654"],["raju","hjfgbdg@6532"]];
+
+bs.push(h);
+console.log(bs);
 
 
+res.send('<a href="http://localhost:8080/"><button>Home</button></a>'+'<a href="http://localhost:8080/login"><button>log in</button></a>')
 
+try{
 
-app.get("/:id", (req, res) => {
-     let {id}=(req.params)
+connection.query(q,[bs[bs.length-1]],
+  
+   (err, results) =>{
+
+    if(err)throw err
+    console.log(results); 
     
-    let sh = student.find((i)=>id===i.id)
-   
-     res.render("show.ejs" , {sh})});
-
-
-
-
-
-    app.patch("/:id", (req, res) => {
-      let {id}=(req.params)
-     let editpass = req.body.pass
-     let editid = req.body.id
-     let edituser = req.body.names
-     let sh = student.find((i)=>id===i.id)
-    sh.pass =editpass
-    sh.id =editid
-    sh.names =edituser
-      res.redirect("/")
-      
-     });
-
-
-     app.delete("/:id", (req, res) => {
-      let {id}=(req.params)
-     
-     student = student.filter((i)=>id !==i.id)
-  
-     
-      res.send("delete"+'<a href="http://localhost:30003/"><button>Home</button></a>');
-     })
-
-
-
-
-     app.get("/:id/edit", (req, res) => {
-      let {id} =(req.params);
-
-      let sh = student.find((i)=>id===i.id)
-     
-   
-      res.render("edit.ejs", {sh})});
-
-
-  
-// app.get("/:ram",(req,res)=>
-// {let {ram}=req.params
-// res.render(ram)
-// });
-
- 
-  
-app.get("/json/:ramu",(req,res)=>
-  {let {ramu}=req.params;
-
-const fdata = require('./data.json');
-const data = fdata[ramu];
-
-
-  res.render("json.ejs",{data})
-  
-  }
-  );
-
-
-
-
-
-
-
-
- 
+  });
+} catch (err)  {
+  console.log(err);
+} })     ;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 

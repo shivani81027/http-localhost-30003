@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="border: solid 2px black; width: 500px; text-align: center; margin-left: 22%; margin-bottom: 5%; background-color: #fff;" > 
+        <a href="http://localhost:30003/"> <button style="margin-left: 85%; display: inline-block; border-radius: 50%; background-color: red; color: #f0f0f0; border: solid black 2px; margin-top: 10px;"> <span class="material-symbols-outlined">
+        home
+        </span></button></a>
+        
+        
+       
+
+            <form action="/<%=sh.id%>/?_method=patch" method="post">
+                
+                <i>User user name:-</i>
+
+                    <textarea name="names" id="user" rows="3">
+                       <%=sh.names%>  
+                    
+                    </textarea> 
+                    <br>
+
+                    <i>User id ............:-</i>
+
+                    <textarea name="id" id="id" rows="3">
+                       <%=sh.id%>  
+                    
+                    </textarea> 
+<br>
+           
+                    <i>User passwode:-</i>
+
+                    <textarea name="pass" id="pass" rows="3">
+                       <%=sh.pass%>  
+                   
+                    </textarea>  
+                <br>
+                <br>
+                    <a href="http://localhost:30003/<%= sh.id %>/"> <button style=" display: inline-block; border-radius: 50%; background-color: #2564eb; color: #f0f0f0; border: solid black 2px; "> 
+                        add
+                        </button></a><br><br>
+                       </form>
+                       
+                </div>
+                
+                    
+</body>
+</html>

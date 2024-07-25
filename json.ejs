@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ID Card</title>
+  <style>
+ 
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .id-card {
+      width: 600px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+    <a href="http://localhost:30003/json/user1"><button>user1</button></a>
+    <a href="http://localhost:30003/json/user2"><button>user2</button></a>
+    <a href="http://localhost:30003/json/user3"><button>user3</button></a>
+    <a href="http://localhost:30003/json/user4"><button>user4</button></a>
+    <a href="http://localhost:30003/json/user5"><button>user5</button></a>
+    <br><br> 
+    <h1>
+    <button style=" display: inline-block; background-color: rgb(162, 179, 204); color: #f0f0f0; border: solid black 2px; "><a href="http://localhost:30003/"> back page</a></button></h1>
+  <div class="id-card">
+    <img class="photo" src=<%= data.photoURL %> alt="Photo">
+   
+
+    <h1><%= data.name %>
+    <p>Age: <%= data.age %></p>
+    <p>Job Title: <%= data.jobTitle %></p>
+    <p>Company: <%= data.company %></p>
+    <p>Address: <%= data.address %></p></h2>
+  </div>
+</body>
+</html>

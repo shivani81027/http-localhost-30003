@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="/cdd.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+  
+ 
+  <h1 style="display: inline-block; color: red;"><b><i><u>Lalit Narayan Mithila University</u></i></b>     </h1>
+  <img src="kkkk.jpg" alt=" my image">
+  <h1><a href="http://localhost:30003/json/user1"><button><b>user</b></button></a>
+    
+    </h1>
+       
+
+           <hr>
+       <h2 style="margin-left: 40%;"> student name list :- </h2>
+          <% for (let name of student){%> 
+            
+            <div style="border: solid 2px black; width: 500px; text-align: center; margin: 20px;background-color: #fff; margin-left: 20%;" >
+            
+            <h1><i>Username:-</i> <%= name.names %> </h1> <h1> <i>User password:-</i><%= name.pass %> </h1> <h1> <i>User ID :-</i><%= name.id %> </h1>
+
+
+            <a href="http://localhost:30003/<%= name.id %>/"><button><span class="material-symbols-outlined">
+              next_plan
+              </span></button> 
+             </a>
+
+<form action="/<%=name.id%>?_method=delete" method="post">
+  
+  <button type="submit"> <span class="material-symbols-outlined">
+    delete
+    </span>
+  </button>
+</form>
+
+
+
+
+
+
+             <a href="login.html"><button type="button" style="margin-left: 60%; border-radius: 50%;"> <h3>HELP</h3></button></a>
+
+          </div>
+
+
+
+
+            <% if (name!== student.length - 1) { %>
+              <hr /> 
+            <% } %> 
+             <% } %>
+
+          
+
+
+          
+         <button><a href="http://localhost:30003/login/"> name add </a></button>
+    
+
+
+    
+<br><br><hr> 
+
+
+ 
+
+   
+
+   
+
+
+</body>
+</html>
